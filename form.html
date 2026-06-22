@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Get In Touch — Events by Pejublack</title>
 
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -168,7 +168,7 @@ a.qcard:hover .qcard-arr { color: var(--pink); }
 .fp-title { font-family: var(--fd); font-style: italic; font-size: 1.55rem; color: var(--white); font-weight: 500; margin-bottom: 5px; }
 .fp-sub { font-family: var(--fb); font-size: .72rem; font-weight: 300; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 32px; }
 
-/* Form elements */
+/* Form elements — FIX: Prevent iOS zoom on input focus */
 .fr { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .fg { margin-bottom: 16px; }
 .fg label {
@@ -177,12 +177,13 @@ a.qcard:hover .qcard-arr { color: var(--pink); }
   color: rgba(255,255,255,.32); margin-bottom: 8px;
 }
 .fg input, .fg select, .fg textarea {
-  width: 100%; font-family: var(--fb); font-size: .86rem; font-weight: 300;
+  width: 100%; font-family: var(--fb); font-size: 16px; font-weight: 300;
   padding: 13px 16px;
   background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
   color: var(--white); outline: none;
   transition: border-color .28s, background .28s;
   -webkit-appearance: none; appearance: none;
+  -webkit-user-select: text; user-select: text;
 }
 .fg input::placeholder, .fg textarea::placeholder { color: rgba(255,255,255,.18); }
 .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--pink); background: rgba(255,255,255,.08); }
@@ -253,10 +254,8 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.3); }
 }
 .btn-db::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform .38s ease; }
 .btn-db:hover::before { transform: translateX(0); }
-.btn-db span { position: relative; z-index: 1; display: flex; align-items: center; gap: 9px; color: var(--charcoal); }
+.btn-db span { position: relative; z-index: 1; display: flex; align-items: center; gap: 9px; }
 .btn-db:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,35,122,.35); }
-.btn-db span { color: var(--white); }
-.btn-db:hover span { color: var(--charcoal); }
 
 .form-note { font-family: var(--fb); font-size: .65rem; font-weight: 300; color: rgba(255,255,255,.22); text-align: center; margin-top: 12px; letter-spacing: .04em; line-height: 1.7; }
 
@@ -550,8 +549,8 @@ footer { background: var(--charcoal); padding: 76px 0 38px; }
 
   <!-- RIGHT — FORM -->
   <div class="hero-right">
-    <div class="fp-title">Send Your Enquiry</div>
-    <div class="fp-sub">Choose how you'd like to submit below</div>
+    <div class="fp-title">Send Your Inquiry</div>
+    <div class="fp-sub">Share Your Event Details Below</div>
 
     <!-- Name row -->
     <div class="fr">
@@ -654,22 +653,22 @@ footer { background: var(--charcoal); padding: 76px 0 38px; }
       <textarea placeholder="Describe your dream event — theme, colours, special requests, inspiration…" id="message"></textarea>
     </div>
 
-    <!-- DUAL SUBMIT BUTTONS -->
-    <div class="submit-choice-label">Choose how to send</div>
+    <!-- DUAL SUBMIT BUTTONS — UPDATED LABELS -->
+    <div class="submit-choice-label">Choose your preferred method</div>
 
     <div class="submit-row">
       <button class="btn-submit btn-wa" onclick="submitWhatsApp()" id="btnWa">
-        <span><i class="fab fa-whatsapp"></i> Send via WhatsApp</span>
+        <span><i class="fab fa-whatsapp"></i> Send Inquiry</span>
       </button>
       <button class="btn-submit btn-db" onclick="submitSupabase()" id="btnDb">
-        <span><i class="fas fa-database"></i> Save to Database</span>
+        <span><i class="fas fa-check-circle"></i> Submit Inquiry</span>
       </button>
     </div>
 
     <p class="form-note">
       <i class="fas fa-lock"></i>&nbsp;
-      <strong style="color:rgba(255,255,255,.45);">WhatsApp</strong> opens your chat directly with all details filled in. &nbsp;·&nbsp;
-      <strong style="color:rgba(255,255,255,.45);">Database</strong> saves everything to your Supabase securely.
+      <strong style="color:rgba(255,255,255,.45);">WhatsApp</strong> opens your chat with details pre-filled. &nbsp;·&nbsp;
+      <strong style="color:rgba(255,255,255,.45);">Submit</strong> saves your inquiry securely.
     </p>
   </div>
 </div>
@@ -850,8 +849,8 @@ footer { background: var(--charcoal); padding: 76px 0 38px; }
 <div class="cta">
   <div class="cta-in rv">
     <h2>Ready to Begin<br><em>Your</em> Story?</h2>
-    <p>Scroll back up to fill the enquiry form, or browse our gallery of past celebrations to see what we're capable of creating for you.</p>
-    <a href="#heroSection" class="btn-w">Send an Enquiry</a>
+    <p>Scroll back up to fill the inquiry form, or browse our gallery of past celebrations to see what we're capable of creating for you.</p>
+    <a href="#heroSection" class="btn-w">Send an Inquiry</a>
     <a href="gallery.html" class="btn-wol">View Gallery</a>
   </div>
 </div>
@@ -928,9 +927,9 @@ footer { background: var(--charcoal); padding: 76px 0 38px; }
 /* ════════════════════════════════════════════════════════════════════
    SUPABASE CONFIGURATION — No Backend Needed! 🎉
 ════════════════════════════════════════════════════════════════════ */
-const SUPABASE_URL = 'https://ybtuxaybfunxajyklajz.supabase.co';     // ← Paste your project URL here
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlidHV4YXliZnVueGFqeWtsYWp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwODYxMzAsImV4cCI6MjA5NzY2MjEzMH0.kVxIz1sufsTd0GFXsPnCnWA_z6-ZA9x58dxmWZJj7t0';        // ← Paste your anon key here
-const WHATSAPP_NUMBER = '2348134125119';               // ← Your WhatsApp number
+const SUPABASE_URL = 'https://ybtuxaybfunxajyklajz.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlidHV4YXliZnVueGFqeWtsYWp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwODYxMzAsImV4cCI6MjA5NzY2MjEzMH0.kVxIz1sufsTd0GFXsPnCnWA_z6-ZA9x58dxmWZJj7t0';
+const WHATSAPP_NUMBER = '2348134125119';
 
 /* ════════════════════════════════════════════════════════════════════
    VALIDATION
@@ -983,15 +982,15 @@ function collectData() {
 async function submitSupabase() {
   if (!validateForm()) return;
 
-  // Check if credentials are set up
   if (SUPABASE_URL === 'YOUR_SUPABASE_PROJECT_URL' || SUPABASE_KEY === 'YOUR_SUPABASE_ANON_KEY') {
-    showToast('⚠️ Supabase not configured. Follow the instructions in the comments above.', 'error');
+    showToast('⚠️ Supabase not configured. Please contact support.', 'error');
     return;
   }
 
   const btn = document.getElementById('btnDb');
   const sp  = btn.querySelector('span');
-  sp.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Saving…';
+  const originalHTML = sp.innerHTML;
+  sp.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Submitting…';
   btn.disabled = true;
 
   const d = collectData();
@@ -1023,13 +1022,18 @@ async function submitSupabase() {
     );
 
     if (response.ok) {
-      showToast('✅ Saved to Supabase! Check your dashboard.', 'success');
-      sp.innerHTML = '<i class="fas fa-check-circle"></i> Saved!';
+      showToast('✅ Thank you! We will get back to you within 24 hours.', 'success');
+      sp.innerHTML = '<i class="fas fa-check-circle"></i> Submitted!';
       btn.style.background = 'var(--sage)';
 
-      // Reset after 3s
+      // Reset form after 3s
       setTimeout(() => {
-        sp.innerHTML = '<i class="fas fa-database"></i> Save to Database';
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+          if (el.type === 'checkbox') el.checked = el.previousElementSibling?.checked !== true ? false : true;
+          else if (el.type !== 'date') el.value = el.id === 'budgetSlider' ? '500000' : '';
+        });
+        updateBudget('500000');
+        sp.innerHTML = originalHTML;
         btn.style.background = '';
         btn.disabled = false;
       }, 3000);
@@ -1039,8 +1043,8 @@ async function submitSupabase() {
 
   } catch (err) {
     console.error('Supabase error:', err);
-    showToast('❌ Error saving. Try WhatsApp instead.', 'error');
-    sp.innerHTML = '<i class="fas fa-database"></i> Save to Database';
+    showToast('❌ Error saving. Please try WhatsApp or call us directly.', 'error');
+    sp.innerHTML = originalHTML;
     btn.disabled = false;
   }
 }
@@ -1054,7 +1058,7 @@ function submitWhatsApp() {
   const d = collectData();
 
   const msg = [
-    '🌸 *NEW ENQUIRY — Events by Pejublack*',
+    '🌸 *NEW INQUIRY — Events by Pejublack*',
     '─────────────────────────',
     `👤 *Name:* ${d.name}`,
     `📧 *Email:* ${d.email}`,
@@ -1076,7 +1080,7 @@ function submitWhatsApp() {
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
 
-  showToast('Opening WhatsApp with your enquiry details!', 'success');
+  showToast('✅ Opening WhatsApp! We will get back to you within 24 hours.', 'success');
 }
 
 /* ════════════════════════════════════════════════════════════════════
