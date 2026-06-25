@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Events by Pejublack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+<style>
+/* ── TOKENS ── */
+:root{
+  --pink:#D4237A;
+  --gold:#F5A623;
+  --sage:#7BC8A4;
+  --charcoal:#1A1A1A;
+  --cream:#FAF8F5;
+  --white:#FFFFFF;
+  --light-gray:#F2F0ED;
+  --text-muted:#6B6B6B;
+  --border:rgba(212,35,122,.12);
+  --font-display:'Playfair Display',serif;
+  --font-hero:'Bodoni Moda',serif;
+  --font-sub:'Cormorant Garamond',serif;
+  --font-body:'Jost',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);background:var(--cream);color:var(--charcoal);overflow-x:hidden}
+
+/* ── CURSOR ── */
+.cursor{position:fixed;width:10px;height:10px;background:var(--pink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:multiply}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--pink);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.6}
+@media(pointer:coarse){.cursor,.cursor-ring{display:none}}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--pink),var(--gold));border-radius:2px}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;background:var(--charcoal);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .8s ease,visibility .8s ease}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{opacity:0;transform:translateY(20px);animation:loaderIn 1s ease .3s forwards}
+.loader-text{font-family:var(--font-display);font-style:italic;color:var(--white);font-size:1.1rem;letter-spacing:.4em;margin-top:18px;opacity:0;animation:loaderIn 1s ease .7s forwards;text-transform:uppercase}
+.loader-bar{width:120px;height:1px;background:rgba(255,255,255,.15);margin-top:24px;position:relative;overflow:hidden}
+.loader-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--pink),var(--gold),var(--sage));animation:barFill 1.8s ease .5s forwards;width:0}
+@keyframes loaderIn{to{opacity:1;transform:translateY(0)}}
+@keyframes barFill{to{width:100%}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .5s ease;background:rgba(10,8,6,.3);backdrop-filter:blur(4px)}
+nav.scrolled{background:rgba(250,248,245,.96);backdrop-filter:blur(20px);padding:14px 60px;box-shadow:0 1px 30px rgba(0,0,0,.06);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-links{display:flex;gap:40px;list-style:none;align-items:center}
+.nav-links a{font-family:var(--font-body);font-weight:300;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none;transition:color .3s;position:relative}
+nav.scrolled .nav-links a{color:var(--text-muted)}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--pink);transition:width .3s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a:hover,.nav-links a.active{color:var(--pink)!important}
+.nav-cta{background:var(--pink);color:var(--white)!important;padding:10px 24px;letter-spacing:.12em!important;transition:background .3s,transform .2s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--charcoal)!important;transform:translateY(-1px)}
+.nav-menu-btn{display:none;background:none;border:none;cursor:pointer;width:40px;height:40px;flex-direction:column;justify-content:center;align-items:center;gap:6px;padding:8px;transition:all .3s;position:relative;z-index:1001}
+.nav-menu-btn span{display:block;width:24px;height:1.5px;background:var(--white);transition:all .35s cubic-bezier(.4,0,.2,1);transform-origin:center}
+nav.scrolled .nav-menu-btn span{background:var(--charcoal)}
+.nav-menu-btn.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.nav-menu-btn.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-menu-btn.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ── MOBILE NAV ── */
+.mobile-nav{display:none;position:fixed;inset:0;background:var(--charcoal);z-index:999;flex-direction:column;padding:100px 48px 60px;opacity:0;transform:translateX(100%);transition:opacity .45s ease,transform .45s cubic-bezier(.4,0,.2,1)}
+.mobile-nav.open{display:flex;opacity:1;transform:translateX(0)}
+.mobile-nav-links{display:flex;flex-direction:column;gap:8px;flex:1}
+.mobile-nav-links a{font-family:var(--font-display);font-style:italic;font-size:2rem;color:rgba(255,255,255,.75);text-decoration:none;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);transition:color .3s,padding-left .3s;display:flex;align-items:center;gap:16px}
+.mobile-nav-links a i{font-size:.75rem;color:var(--gold);opacity:0;transition:opacity .3s}
+.mobile-nav-links a:hover{color:var(--pink);padding-left:8px}
+.mobile-nav-links a:hover i{opacity:1}
+.mobile-nav-cta-btn{display:block;margin-top:32px;padding:18px 32px;background:var(--pink);color:var(--white)!important;text-align:center;font-family:var(--font-body);font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;border-bottom:none!important;font-style:normal!important;transition:background .3s!important}
+.mobile-nav-cta-btn:hover{background:var(--gold)!important;padding-left:0!important}
+.mobile-nav-footer{margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
+.mobile-nav-footer p{font-family:var(--font-body);font-size:.72rem;font-weight:300;color:rgba(255,255,255,.3);letter-spacing:.1em}
+.mobile-socials{display:flex;gap:16px;margin-top:14px}
+.mobile-socials a{width:38px;height:38px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;transition:all .3s;font-size:.85rem}
+.mobile-socials a:hover{background:var(--pink);border-color:var(--pink);color:var(--white)}
+
+/* ── SHARED UTILITIES ── */
+.section-inner{max-width:1200px;margin:0 auto;padding:0 60px}
+.section-label{font-family:var(--font-body);font-weight:300;font-size:.68rem;letter-spacing:.5em;text-transform:uppercase;color:var(--pink);margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.section-label::before{content:'';display:block;width:30px;height:1px;background:var(--pink)}
+.section-title{font-family:var(--font-display);font-style:italic;font-size:clamp(2rem,4vw,3.2rem);color:var(--charcoal);line-height:1.15;font-weight:500}
+.section-title span{color:var(--pink)}
+.btn-primary{font-family:var(--font-body);font-weight:400;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;padding:15px 38px;background:var(--pink);color:var(--white);border:1.5px solid var(--pink);cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s ease;position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--charcoal);transform:translateX(-101%);transition:transform .4s ease;z-index:0}
+.btn-primary:hover::before{transform:translateX(0)}
+.btn-primary:hover{border-color:var(--charcoal)}
+.btn-primary span{position:relative;z-index:1}
+.btn-outline-dark{font-family:var(--font-body);font-weight:400;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;padding:14px 38px;background:transparent;color:var(--charcoal);border:1.5px solid rgba(26,26,26,.3);cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s ease}
+.btn-outline-dark:hover{background:var(--charcoal);color:var(--white);border-color:var(--charcoal)}
+.blob{position:absolute;border-radius:60% 40% 30% 70%/60% 30% 70% 40%;pointer-events:none;opacity:.045;z-index:0;animation:blobFloat 10s ease-in-out infinite}
+.blob-pink{background:var(--pink)}.blob-gold{background:var(--gold);animation-delay:-3s}.blob-sage{background:var(--sage);animation-delay:-6s}
+@keyframes blobFloat{0%,100%{transform:scale(1) translate(0,0)}33%{transform:scale(1.05) translate(10px,-15px)}66%{transform:scale(.95) translate(-8px,10px)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-50px);transition:opacity .9s ease,transform .9s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(50px);transition:opacity .9s ease,transform .9s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* ── PAGE HERO ── */
+.page-hero{position:relative;height:72vh;min-height:500px;overflow:hidden;display:flex;align-items:flex-end}
+.page-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0e0810 0%,#2d1520 40%,#1a1018 100%)}
+.page-hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(212,35,122,.25) 0%,transparent 60%)}
+.page-hero-rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding-right:8%;pointer-events:none}
+.page-hero-rings svg{opacity:.12;transform:scale(1.4)}
+.page-hero-content{position:relative;z-index:2;padding:0 70px 80px;max-width:780px}
+.page-hero-eyebrow{font-family:var(--font-body);font-weight:300;font-size:.68rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:20px;display:flex;align-items:center;gap:14px;opacity:0;animation:fadeInUp .8s ease 1.6s forwards}
+.page-hero-eyebrow::before{content:'';display:block;width:36px;height:1px;background:rgba(255,255,255,.35)}
+.page-hero-title{font-family:var(--font-hero);font-style:italic;font-size:clamp(3rem,7vw,5.8rem);color:var(--white);line-height:1.06;font-weight:500;letter-spacing:-.01em;opacity:0;animation:fadeInUp .8s ease 1.8s forwards}
+.page-hero-title em{color:var(--gold);font-style:italic}
+.page-hero-sub{font-family:var(--font-sub);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.5);margin-top:18px;letter-spacing:.05em;opacity:0;animation:fadeInUp .8s ease 2s forwards}
+.page-hero-breadcrumb{position:absolute;top:50%;right:60px;transform:translateY(-50%) rotate(90deg);transform-origin:center center;z-index:2;display:flex;align-items:center;gap:10px;opacity:.35}
+.page-hero-breadcrumb a,.page-hero-breadcrumb span{font-family:var(--font-body);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:opacity .3s}
+.page-hero-breadcrumb a:hover{opacity:.8}
+.page-hero-breadcrumb i{font-size:.5rem;color:var(--gold)}
+
+/* ── MARQUEE ── */
+.marquee-strip{background:var(--charcoal);padding:16px 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;animation:marquee 32s linear infinite}
+.marquee-item{font-family:var(--font-sub);font-style:italic;font-size:.95rem;color:rgba(255,255,255,.45);padding:0 36px;letter-spacing:.04em;display:inline-flex;align-items:center;gap:16px}
+.marquee-item i{color:var(--gold);font-size:.65rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── STORY SECTION ── */
+#story{padding:120px 0;background:var(--cream);position:relative;overflow:hidden}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center;position:relative;z-index:1}
+.story-img-stack{position:relative;height:560px}
+.story-img-main{position:absolute;top:0;left:0;width:72%;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(135deg,#2d1520 0%,#5c2a40 100%)}
+.story-img-main img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.story-img-main:hover img{transform:scale(1.03)}
+.story-img-secondary{position:absolute;bottom:0;right:0;width:54%;aspect-ratio:1/1;overflow:hidden;border:6px solid var(--cream);background:linear-gradient(135deg,#1a1018 0%,#3d2a38 100%)}
+.story-img-secondary img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.story-img-secondary:hover img{transform:scale(1.03)}
+.story-year-badge{position:absolute;top:50%;left:68%;transform:translate(-50%,-50%);background:var(--pink);color:var(--white);width:90px;height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3;box-shadow:0 20px 50px rgba(212,35,122,.35)}
+.story-year-badge strong{font-family:var(--font-display);font-size:1.8rem;font-style:italic;line-height:1}
+.story-year-badge span{font-family:var(--font-body);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;opacity:.85;margin-top:2px}
+.story-corner{position:absolute;top:-20px;left:-20px;width:72px;height:72px;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
+.story-text .section-title{margin-bottom:26px}
+.story-body{font-family:var(--font-body);font-size:.93rem;line-height:1.95;color:var(--text-muted);font-weight:300}
+.story-body p+p{margin-top:18px}
+.story-body strong{color:var(--charcoal);font-weight:500}
+.story-quote{margin-top:36px;padding:26px 30px 26px 36px;background:var(--light-gray);border-left:3px solid var(--sage);position:relative}
+.story-quote::before{content:'\201C';font-family:var(--font-display);font-size:4rem;color:var(--pink);opacity:.18;position:absolute;top:-4px;left:10px;line-height:1}
+.story-quote p{font-family:var(--font-sub);font-style:italic;font-size:1.1rem;color:var(--charcoal);line-height:1.75}
+
+/* ── STATS / RATINGS SECTION ── */
+#ratings{padding:100px 0;background:var(--charcoal);position:relative;overflow:hidden}
+#ratings::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,35,122,.1) 0%,transparent 60%)}
+.ratings-header{text-align:center;margin-bottom:70px;position:relative;z-index:1}
+.ratings-header .section-label{justify-content:center;color:var(--gold)}
+.ratings-header .section-label::before{background:var(--gold)}
+.ratings-header .section-title{color:var(--white)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;position:relative;z-index:1}
+.stat-card{padding:52px 36px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.03);text-align:center;position:relative;overflow:hidden;transition:background .4s}
+.stat-card::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:linear-gradient(90deg,var(--pink),var(--gold));transition:width .5s ease}
+.stat-card:hover{background:rgba(255,255,255,.06)}
+.stat-card:hover::after{width:80%}
+.stat-number{font-family:var(--font-hero);font-style:italic;font-size:clamp(2.8rem,4vw,4rem);color:var(--white);line-height:1;font-weight:400}
+.stat-number span{color:var(--gold)}
+.stat-label{font-family:var(--font-body);font-size:.7rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:10px}
+.stat-icon{font-size:1.2rem;color:var(--pink);opacity:.6;margin-bottom:20px}
+.ratings-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;position:relative;z-index:1}
+.rating-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:36px 32px;display:flex;flex-direction:column;gap:16px;transition:background .3s}
+.rating-card:hover{background:rgba(255,255,255,.07)}
+.rating-platform{font-family:var(--font-body);font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.rating-stars{display:flex;gap:4px;align-items:center}
+.rating-stars i{color:var(--gold);font-size:.85rem}
+.rating-score{font-family:var(--font-display);font-style:italic;font-size:2rem;color:var(--white);font-weight:500;line-height:1}
+.rating-score sup{font-size:1rem;color:rgba(255,255,255,.4);font-style:normal}
+.rating-desc{font-family:var(--font-body);font-size:.8rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7}
+
+/* ── CEO SECTION ── */
+#ceo{padding:120px 0;background:var(--white);position:relative;overflow:hidden}
+.ceo-layout{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:start;position:relative;z-index:1}
+.ceo-portrait{position:relative}
+.ceo-portrait-img{aspect-ratio:3/4;overflow:hidden;background:linear-gradient(135deg,#2d1520 0%,#5c2a40 50%,#8b4060 100%);position:relative}
+.ceo-portrait-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s ease}
+.ceo-portrait:hover .ceo-portrait-img img{transform:scale(1.04)}
+.ceo-portrait-accent{position:absolute;top:-18px;left:-18px;width:70px;height:70px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);pointer-events:none}
+.ceo-portrait-corner{position:absolute;bottom:-18px;right:-18px;width:70px;height:70px;border-bottom:2px solid var(--pink);border-right:2px solid var(--pink);pointer-events:none}
+.ceo-portrait-tag{position:absolute;bottom:28px;left:-20px;background:var(--charcoal);color:var(--white);padding:14px 22px;z-index:2;min-width:180px}
+.ceo-portrait-tag strong{font-family:var(--font-display);font-style:italic;font-size:1rem;display:block;margin-bottom:3px}
+.ceo-portrait-tag span{font-family:var(--font-body);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.ceo-cert-strip{display:flex;flex-direction:column;gap:10px;margin-top:36px}
+.ceo-cert{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--light-gray);border-left:3px solid var(--sage)}
+.ceo-cert i{color:var(--sage);font-size:.95rem;flex-shrink:0}
+.ceo-cert-text strong{font-family:var(--font-body);font-size:.82rem;font-weight:500;color:var(--charcoal);display:block}
+.ceo-cert-text span{font-family:var(--font-body);font-size:.75rem;font-weight:300;color:var(--text-muted)}
+.ceo-content .section-title{margin-bottom:22px}
+.ceo-bio{font-family:var(--font-body);font-size:.92rem;line-height:1.95;color:var(--text-muted);font-weight:300;margin-bottom:36px}
+.ceo-bio p+p{margin-top:16px}
+.ceo-bio strong{color:var(--charcoal);font-weight:500}
+.ceo-values-title{font-family:var(--font-body);font-size:.68rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
+.ceo-values{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.value-tag{font-family:var(--font-body);font-size:.68rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border:1px solid var(--border);color:var(--text-muted);transition:all .3s;cursor:default}
+.value-tag:hover{background:var(--pink);border-color:var(--pink);color:var(--white);transform:translateY(-2px)}
+.ceo-quote-block{background:var(--light-gray);padding:30px 34px;border-left:4px solid var(--pink);position:relative}
+.ceo-quote-block::before{content:'\201C';font-family:var(--font-display);font-size:5rem;color:var(--pink);opacity:.15;position:absolute;top:-8px;left:12px;line-height:1}
+.ceo-quote-block p{font-family:var(--font-sub);font-style:italic;font-size:1.1rem;color:var(--charcoal);line-height:1.8}
+.ceo-quote-block cite{display:block;margin-top:14px;font-family:var(--font-body);font-size:.72rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);font-style:normal}
+
+/* ── GOALS & OBJECTIVES ── */
+#goals{padding:120px 0;background:var(--light-gray);position:relative;overflow:hidden}
+.goals-header{text-align:center;margin-bottom:70px}
+.goals-header .section-label{justify-content:center}
+.goals-header .section-title{max-width:600px;margin:0 auto}
+.goals-header p{font-family:var(--font-body);font-size:.9rem;font-weight:300;color:var(--text-muted);margin-top:16px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.85}
+.goals-layout{display:grid;grid-template-columns:1fr 1fr;gap:30px;position:relative;z-index:1}
+.goal-block{background:var(--white);border:1px solid var(--border);padding:48px 42px;position:relative;overflow:hidden;transition:box-shadow .4s,transform .3s}
+.goal-block:hover{box-shadow:0 24px 64px rgba(212,35,122,.09);transform:translateY(-4px)}
+.goal-block-accent{position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--pink),var(--gold))}
+.goal-icon{width:54px;height:54px;background:var(--light-gray);display:flex;align-items:center;justify-content:center;margin-bottom:26px;color:var(--pink);font-size:1.15rem;transition:all .35s}
+.goal-block:hover .goal-icon{background:var(--pink);color:var(--white)}
+.goal-block h3{font-family:var(--font-display);font-style:italic;font-size:1.4rem;color:var(--charcoal);margin-bottom:18px;font-weight:500}
+.goal-block ul{list-style:none}
+.goal-block ul li{font-family:var(--font-body);font-size:.86rem;font-weight:300;color:var(--text-muted);padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:flex-start;gap:12px;line-height:1.6}
+.goal-block ul li:last-child{border-bottom:none}
+.goal-block ul li i{color:var(--pink);font-size:.7rem;flex-shrink:0;margin-top:4px}
+.goal-full{grid-column:span 2;background:var(--charcoal);border-color:transparent}
+.goal-full .goal-block-accent{background:linear-gradient(180deg,var(--gold),var(--sage))}
+.goal-full .goal-icon{background:rgba(255,255,255,.06);color:var(--gold)}
+.goal-full:hover .goal-icon{background:var(--gold);color:var(--charcoal)}
+.goal-full h3{color:var(--white)}
+.goal-full ul li{color:rgba(255,255,255,.55);border-bottom-color:rgba(255,255,255,.06)}
+.goal-full ul li i{color:var(--gold)}
+.goal-full ul{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+
+/* ── TEAM GALLERY ── */
+#team-gallery{padding:120px 0;background:var(--cream);position:relative;overflow:hidden}
+.tg-header{margin-bottom:60px}
+.tg-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:220px;gap:12px;position:relative;z-index:1}
+.tg-item{overflow:hidden;position:relative;background:linear-gradient(135deg,#2d1520,#5c2a40);cursor:pointer}
+.tg-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .65s ease}
+.tg-item:hover img{transform:scale(1.06)}
+.tg-item::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(212,35,122,.28) 0%,rgba(26,26,26,.65) 100%);opacity:0;transition:opacity .4s;z-index:1}
+.tg-item:hover::before{opacity:1}
+.tg-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;opacity:0;transform:translateY(8px);transition:all .4s}
+.tg-item:hover .tg-overlay{opacity:1;transform:translateY(0)}
+.tg-overlay-label{font-family:var(--font-sub);font-style:italic;font-size:.95rem;color:var(--white);letter-spacing:.04em}
+.tg-overlay-sub{font-family:var(--font-body);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:3px}
+/* Grid layout — varied sizes for editorial feel */
+.tg-item:nth-child(1){grid-column:span 5;grid-row:span 2}
+.tg-item:nth-child(2){grid-column:span 4}
+.tg-item:nth-child(3){grid-column:span 3}
+.tg-item:nth-child(4){grid-column:span 4}
+.tg-item:nth-child(5){grid-column:span 3;grid-row:span 2}
+.tg-item:nth-child(6){grid-column:span 5}
+.tg-item:nth-child(7){grid-column:span 4}
+.tg-item:nth-child(8){grid-column:span 3}
+/* placeholder bg colours when no image */
+.tg-item:nth-child(odd){background:linear-gradient(135deg,#2d1520 0%,#5c2a40 100%)}
+.tg-item:nth-child(even){background:linear-gradient(135deg,#1a1018 0%,#3d2a38 100%)}
+
+/* ── VALUES STRIP ── */
+#values{padding:100px 0;background:var(--charcoal);position:relative;overflow:hidden}
+#values::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(245,166,35,.07) 0%,transparent 55%)}
+.values-inner{position:relative;z-index:1}
+.values-header{margin-bottom:60px}
+.values-header .section-label{color:var(--gold)}
+.values-header .section-label::before{background:var(--gold)}
+.values-header .section-title{color:var(--white)}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.value-card{padding:42px 32px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.03);position:relative;overflow:hidden;transition:background .35s}
+.value-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--pink),var(--gold));transition:width .4s}
+.value-card:hover{background:rgba(255,255,255,.06)}
+.value-card:hover::after{width:100%}
+.value-card i{font-size:1.3rem;color:var(--gold);margin-bottom:20px;display:block;opacity:.8}
+.value-card h4{font-family:var(--font-sub);font-style:italic;font-size:1.15rem;color:var(--white);margin-bottom:12px;font-weight:600}
+.value-card p{font-family:var(--font-body);font-size:.82rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.75}
+
+/* ── CTA BANNER ── */
+.about-cta-banner{padding:110px 0;background:var(--cream);text-align:center;position:relative;overflow:hidden}
+.about-cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(212,35,122,.06) 0%,transparent 65%)}
+.about-cta-inner{position:relative;z-index:1}
+.about-cta-inner .section-label{justify-content:center}
+.about-cta-inner h2{font-family:var(--font-display);font-style:italic;font-size:clamp(2rem,4vw,3rem);color:var(--charcoal);margin-bottom:16px;font-weight:500;margin-top:4px}
+.about-cta-inner p{font-family:var(--font-sub);font-style:italic;font-size:1.1rem;color:var(--text-muted);margin-bottom:40px;letter-spacing:.04em}
+.about-cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+footer{background:var(--charcoal);padding:80px 0 40px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 60px}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
+.footer-brand p{font-family:var(--font-body);font-size:.82rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.9;margin-top:20px;max-width:260px}
+.footer-brand-name{font-family:var(--font-display);font-style:italic;font-size:1.5rem;color:var(--white);font-weight:500}
+.footer-brand-sub{font-family:var(--font-body);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.footer-col h4{font-family:var(--font-body);font-size:.68rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:22px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:12px}
+.footer-col ul li a{font-family:var(--font-body);font-size:.82rem;font-weight:300;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s;display:inline-flex;align-items:center;gap:8px}
+.footer-col ul li a:hover{color:var(--pink)}
+.footer-col ul li a i{font-size:.6rem;color:var(--gold)}
+.footer-divider{border:none;border-top:1px solid rgba(255,255,255,.07);margin-bottom:36px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-family:var(--font-body);font-size:.72rem;font-weight:300;color:rgba(255,255,255,.3)}
+.footer-bottom p span{color:var(--pink)}
+
+/* ── WHATSAPP FLOAT ── */
+.whatsapp-float{position:fixed;right:24px;bottom:24px;width:56px;height:56px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(0,0,0,.18);z-index:9999;transition:transform .2s ease,box-shadow .2s ease}
+.whatsapp-float:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(0,0,0,.22)}
+.whatsapp-float a{color:#fff;font-size:1.35rem;line-height:1;display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .story-grid{grid-template-columns:1fr;gap:60px}
+  .story-img-stack{height:420px}
+  .ceo-layout{grid-template-columns:1fr;gap:50px}
+  .goals-layout{grid-template-columns:1fr}
+  .goal-full{grid-column:span 1}
+  .goal-full ul{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .ratings-row{grid-template-columns:1fr 1fr}
+  .values-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .tg-item:nth-child(1){grid-column:span 7}
+  .tg-item:nth-child(2){grid-column:span 5}
+  .tg-item:nth-child(3){grid-column:span 6}
+  .tg-item:nth-child(4){grid-column:span 6}
+  .tg-item:nth-child(5){grid-column:span 5}
+  .tg-item:nth-child(6){grid-column:span 7}
+  .tg-item:nth-child(7){grid-column:span 6}
+  .tg-item:nth-child(8){grid-column:span 6}
+}
+@media(max-width:768px){
+  .section-inner{padding:0 24px}
+  nav{padding:18px 24px}
+  nav.scrolled{padding:12px 24px}
+  .nav-links{display:none}
+  .nav-menu-btn{display:flex}
+  .page-hero-content{padding:0 24px 60px}
+  .page-hero-title{font-size:clamp(2.6rem,10vw,4rem)}
+  .page-hero-breadcrumb{display:none}
+  .story-img-stack{height:300px}
+  .story-img-main{width:78%}
+  .story-img-secondary{width:60%}
+  .story-year-badge{width:72px;height:72px}
+  .story-year-badge strong{font-size:1.4rem}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .ratings-row{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
+  .tg-grid{grid-template-columns:1fr 1fr;grid-auto-rows:180px}
+  .tg-item:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .tg-item:nth-child(1){grid-column:span 2;grid-row:span 2}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:20px;text-align:center}
+  .footer-inner{padding:0 24px}
+  .about-cta-btns{flex-direction:column;align-items:center}
+  .ceo-portrait-tag{left:0;bottom:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">
+    <svg viewBox="0 0 80 80" width="80" height="80" fill="none">
+      <ellipse cx="28" cy="44" rx="22" ry="30" fill="#D4237A" opacity=".9" transform="rotate(-20 28 44)"/>
+      <ellipse cx="44" cy="36" rx="20" ry="28" fill="#F5A623" opacity=".85" transform="rotate(10 44 36)"/>
+      <ellipse cx="56" cy="48" rx="16" ry="22" fill="#7BC8A4" opacity=".8" transform="rotate(30 56 48)"/>
+    </svg>
+  </div>
+  <div class="loader-text">Events by Pejublack</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <div class="mobile-nav-links">
+    <a href="index.html" onclick="closeMobileNav()"><i class="fas fa-chevron-right"></i>Home</a>
+    <a href="index.html#services" onclick="closeMobileNav()"><i class="fas fa-chevron-right"></i>Services</a>
+    <a href="index.html#packages" onclick="closeMobileNav()"><i class="fas fa-chevron-right"></i>Packages</a>
+    <a href="gallery.html" onclick="closeMobileNav()"><i class="fas fa-chevron-right"></i>Gallery</a>
+    <a href="about.html" onclick="closeMobileNav()" style="color:var(--pink)!important"><i class="fas fa-chevron-right"></i>About Us</a>
+    <a href="form.html" class="mobile-nav-cta-btn">Enquire Now</a>
+  </div>
+  <div class="mobile-nav-footer">
+    <p>Follow us</p>
+    <div class="mobile-socials">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://wa.me/2348134125119" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 60 60" width="42" height="42" fill="none">
+      <ellipse cx="20" cy="34" rx="16" ry="22" fill="#D4237A" opacity=".92" transform="rotate(-20 20 34)"/>
+      <ellipse cx="32" cy="28" rx="15" ry="20" fill="#F5A623" opacity=".88" transform="rotate(10 32 28)"/>
+      <ellipse cx="42" cy="36" rx="12" ry="16" fill="#7BC8A4" opacity=".82" transform="rotate(30 42 36)"/>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#packages">Packages</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html" class="active">About Us</a></li>
+    <li><a href="form.html" class="nav-cta">Enquire Now</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn" onclick="toggleMobileNav()" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-rings">
+    <svg width="600" height="600" viewBox="0 0 600 600" fill="none">
+      <ellipse cx="240" cy="340" rx="200" ry="280" stroke="#D4237A" stroke-width="1.5" transform="rotate(-20 240 340)"/>
+      <ellipse cx="320" cy="280" rx="180" ry="250" stroke="#F5A623" stroke-width="1.5" transform="rotate(10 320 280)"/>
+      <ellipse cx="400" cy="360" rx="140" ry="200" stroke="#7BC8A4" stroke-width="1.5" transform="rotate(30 400 360)"/>
+    </svg>
+  </div>
+  <div class="page-hero-content">
+    <p class="page-hero-eyebrow">Events by Pejublack</p>
+    <h1 class="page-hero-title">Our <em>Story,</em><br>Our People</h1>
+    <p class="page-hero-sub">The passion, purpose, and team behind every unforgettable celebration</p>
+  </div>
+  <div class="page-hero-breadcrumb">
+    <a href="index.html">Home</a>
+    <i class="fas fa-chevron-right"></i>
+    <span>About Us</span>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Passion-Driven <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">Detail-Obsessed <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">Client-First <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">6+ Years of Excellence <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">Lagos & Beyond <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">100+ Events Delivered <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">5-Star Rated <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">Passion-Driven <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">Detail-Obsessed <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">Client-First <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">6+ Years of Excellence <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">Lagos & Beyond <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">100+ Events Delivered <i class="fas fa-circle"></i></span>
+    <span class="marquee-item">5-Star Rated <i class="fas fa-circle"></i></span>
+  </div>
+</div>
+
+<!-- OUR STORY -->
+<section id="story">
+  <div class="blob blob-pink" style="width:460px;height:460px;top:-80px;right:-100px;"></div>
+  <div class="blob blob-gold" style="width:280px;height:280px;bottom:60px;left:-60px;"></div>
+  <div class="section-inner">
+    <div class="story-grid">
+
+      <div class="story-visual reveal-left">
+        <div class="story-corner"></div>
+        <div class="story-img-stack">
+          <div class="story-img-main">
+            <img src="white-wedding_04.jpeg" alt="Events by Pejublack in action" loading="lazy">
+          </div>
+          <div class="story-img-secondary">
+            <img src="birthday_10.jpeg" alt="Celebrating clients" loading="lazy">
+          </div>
+          <div class="story-year-badge">
+            <strong>6+</strong>
+            <span>Years</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-text reveal-right">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Born from a Love<br>of <span>Celebration</span></h2>
+        <div class="story-body">
+          <p><strong>Events by Pejublack</strong> was founded on one belief — that every occasion, no matter the size, deserves to be extraordinary. What began as a personal passion for creating beautiful, meaningful gatherings has grown into Lagos' most trusted full-service event planning and management company.</p>
+          <p>From our very first event, we set out to do things differently. We don't take on events; we take on dreams. We sit with our clients, learn their stories, understand what makes their celebration uniquely theirs, and then pour every ounce of our creativity and professionalism into bringing that vision to life.</p>
+          <p>Over the years, we have had the honour of planning weddings, corporate galas, milestone birthdays, intimate celebrations, and memorial tributes — each one handled with the same level of care, precision, and love. Our growth has been built entirely on referrals and repeat clients, a testament to the experiences we consistently deliver.</p>
+        </div>
+        <div class="story-quote">
+          <p>We don't just plan events — we craft experiences that live forever in the hearts of those who attend.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RATINGS & STATS -->
+<section id="ratings">
+  <div class="section-inner">
+    <div class="ratings-header reveal">
+      <span class="section-label" style="justify-content:center;color:var(--gold)"><span style="display:block;width:30px;height:1px;background:var(--gold)"></span>Our Track Record</span>
+      <h2 class="section-title" style="color:var(--white);">Numbers That <span style="color:var(--gold);">Speak</span> for Us</h2>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card reveal" style="transition-delay:.05s">
+        <div class="stat-icon"><i class="fas fa-calendar-star"></i></div>
+        <div class="stat-number"><span class="counter" data-target="100">0</span><span>+</span></div>
+        <div class="stat-label">Events Successfully Delivered</div>
+      </div>
+      <div class="stat-card reveal" style="transition-delay:.1s">
+        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+        <div class="stat-number"><span class="counter" data-target="6">0</span><span>+</span></div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+      <div class="stat-card reveal" style="transition-delay:.15s">
+        <div class="stat-icon"><i class="fas fa-star"></i></div>
+        <div class="stat-number"><span>5.0</span></div>
+        <div class="stat-label">Client Satisfaction Rating</div>
+      </div>
+      <div class="stat-card reveal" style="transition-delay:.2s">
+        <div class="stat-icon"><i class="fas fa-heart"></i></div>
+        <div class="stat-number"><span class="counter" data-target="95">0</span><span>%</span></div>
+        <div class="stat-label">Repeat & Referred Clients</div>
+      </div>
+    </div>
+
+    <div class="ratings-row">
+      <div class="rating-card reveal" style="transition-delay:.1s">
+        <div class="rating-platform">Google Reviews</div>
+        <div class="rating-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <div class="rating-score">5.0<sup>/5</sup></div>
+        <div class="rating-desc">Consistently rated five stars across all Google reviews for professionalism, creativity, and exceptional day-of coordination.</div>
+      </div>
+      <div class="rating-card reveal" style="transition-delay:.2s">
+        <div class="rating-platform">Instagram Community</div>
+        <div class="rating-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <div class="rating-score">5.0<sup>/5</sup></div>
+        <div class="rating-desc">An engaged Instagram following built purely on real client celebrations — no paid promotion, just work that speaks for itself.</div>
+      </div>
+      <div class="rating-card reveal" style="transition-delay:.3s">
+        <div class="rating-platform">Client Referral Rate</div>
+        <div class="rating-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <div class="rating-score">95<sup>%</sup></div>
+        <div class="rating-desc">Nearly all new clients come through personal referrals — the highest endorsement any event company can receive from their community.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CEO PROFILE -->
+<section id="ceo">
+  <div class="blob blob-sage" style="width:380px;height:380px;top:-60px;right:-80px;opacity:.06;"></div>
+  <div class="section-inner">
+    <div class="ceo-layout">
+
+      <div class="ceo-portrait reveal-left">
+        <div class="ceo-portrait-accent"></div>
+        <div class="ceo-portrait-img">
+          <img src="ceo.jpeg" alt="Oyepeju Ojikutu — Founder & CEO, Events by Pejublack" loading="lazy">
+        </div>
+        <div class="ceo-portrait-corner"></div>
+        <div class="ceo-portrait-tag">
+          <strong>Oyepeju Ojikutu</strong>
+          <span>Founder &amp; CEO</span>
+        </div>
+        <div class="ceo-cert-strip" style="margin-top:60px;">
+          <div class="ceo-cert">
+            <i class="fas fa-video"></i>
+            <div class="ceo-cert-text">
+              <strong>Certified Show Producer</strong>
+              <span>Mahogany Training Academy, Lagos</span>
+            </div>
+          </div>
+          <div class="ceo-cert">
+            <i class="fas fa-award"></i>
+            <div class="ceo-cert-text">
+              <strong>Event Excellence Lead</strong>
+              <span>Events by Pejublack</span>
+            </div>
+          </div>
+          <div class="ceo-cert">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="ceo-cert-text">
+              <strong>Lagos, Nigeria</strong>
+              <span>Serving events nationwide &amp; beyond</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ceo-content reveal-right">
+        <span class="section-label">Meet the CEO</span>
+        <h2 class="section-title">Peju <span>Black</span> —<br>The Vision Behind<br>Every Event</h2>
+        <div class="ceo-bio">
+          <p><strong>Oyepeju Ojikutu</strong>, known widely as Peju Black, is the founder and driving force behind Events by Pejublack. With over a decade of immersive experience in event design, planning, and management, Peju has built a reputation that is synonymous with elegance, precision, and genuine care for every client she serves.</p>
+          <p>Her journey into event planning was not accidental — it grew from a deep love for people and a natural instinct for creating environments where memories are made. She trained as a Certified Show Producer at the Mahogany Training Academy in Lagos, formalising the skills she had already been sharpening in the field for years.</p>
+          <p>What makes Peju exceptional is her ability to listen. She does not impose a style — she discovers yours, amplifies it, and delivers it back to you in a celebration that feels unmistakably, beautifully yours. From the first consultation to the final dance of the evening, she is present, meticulous, and tireless.</p>
+          <p>Her clients often say the same thing: they didn't just hire a planner, they found a guardian angel for the most important day of their lives.</p>
+        </div>
+        <p class="ceo-values-title">Leadership Values</p>
+        <div class="ceo-values">
+          <span class="value-tag">Creativity</span>
+          <span class="value-tag">Integrity</span>
+          <span class="value-tag">Excellence</span>
+          <span class="value-tag">Empathy</span>
+          <span class="value-tag">Precision</span>
+          <span class="value-tag">Client-First</span>
+          <span class="value-tag">Passion</span>
+        </div>
+        <div class="ceo-quote-block">
+          <p>Every client that trusts us with their celebration trusts us with a chapter of their story. That responsibility is something we never take lightly — and never will.</p>
+          <cite>— Oyepeju Ojikutu, Founder &amp; CEO</cite>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GOALS & OBJECTIVES -->
+<section id="goals">
+  <div class="blob blob-gold" style="width:360px;height:360px;bottom:-80px;right:-60px;opacity:.05;"></div>
+  <div class="section-inner">
+    <div class="goals-header reveal">
+      <span class="section-label" style="justify-content:center;">What Drives Us</span>
+      <h2 class="section-title">Our Goals &amp; <span>Objectives</span></h2>
+      <p>Every decision we make, every team we build, every event we take on is guided by a clear sense of purpose — to set the standard for excellence in event planning across Africa and beyond.</p>
+    </div>
+    <div class="goals-layout">
+
+      <div class="goal-block reveal" style="transition-delay:.1s">
+        <div class="goal-block-accent"></div>
+        <div class="goal-icon"><i class="fas fa-bullseye"></i></div>
+        <h3>Our Vision</h3>
+        <ul>
+          <li><i class="fas fa-chevron-right"></i>To become Africa's most referenced luxury event company, known for turning ordinary occasions into extraordinary lifelong memories.</li>
+          <li><i class="fas fa-chevron-right"></i>To expand our footprint across Nigeria, the UK, USA, and Canada — serving the Nigerian diaspora with the same warmth and excellence they receive at home.</li>
+          <li><i class="fas fa-chevron-right"></i>To be the go-to name when clients say, "I want it done perfectly."</li>
+        </ul>
+      </div>
+
+      <div class="goal-block reveal" style="transition-delay:.2s">
+        <div class="goal-block-accent"></div>
+        <div class="goal-icon"><i class="fas fa-compass"></i></div>
+        <h3>Our Mission</h3>
+        <ul>
+          <li><i class="fas fa-chevron-right"></i>To deliver full-service event experiences that are deeply personal, beautifully executed, and consistently exceed client expectations.</li>
+          <li><i class="fas fa-chevron-right"></i>To maintain absolute transparency with clients at every stage of the planning process — no surprises, no shortcuts.</li>
+          <li><i class="fas fa-chevron-right"></i>To build a team culture where creativity, accountability, and care for the client are non-negotiable.</li>
+        </ul>
+      </div>
+
+      <div class="goal-block goal-full reveal" style="transition-delay:.3s">
+        <div class="goal-block-accent"></div>
+        <div class="goal-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Our Key Objectives</h3>
+        <ul>
+          <li><i class="fas fa-check"></i>Deliver every event on time, within budget, and above expectation — zero exceptions.</li>
+          <li><i class="fas fa-check"></i>Maintain a 5-star client satisfaction rating across all review platforms through relentless quality.</li>
+          <li><i class="fas fa-check"></i>Grow our certified team of event designers and coordinators to handle simultaneous large-scale events.</li>
+          <li><i class="fas fa-check"></i>Deepen vendor relationships across Lagos to secure the best pricing and priority access for our clients.</li>
+          <li><i class="fas fa-check"></i>Develop signature event concepts and design packages that are exclusively the Events by Pejublack aesthetic.</li>
+          <li><i class="fas fa-check"></i>Build long-term relationships — our goal is not one event per client, but a lifetime of celebrations together.</li>
+          <li><i class="fas fa-check"></i>Mentor and train emerging event professionals, giving back to the creative industry that shaped us.</li>
+          <li><i class="fas fa-check"></i>Expand digital presence to attract international Nigerian diaspora clients planning weddings and celebrations in Lagos.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TEAM GALLERY -->
+<section id="team-gallery">
+  <div class="blob blob-pink" style="width:400px;height:400px;bottom:-100px;left:-80px;opacity:.04;"></div>
+  <div class="section-inner">
+    <div class="tg-header reveal">
+      <span class="section-label">Behind the Scenes</span>
+      <h2 class="section-title">The Faces of <span>Pejublack</span></h2>
+      <p style="font-family:var(--font-body);font-size:.9rem;font-weight:300;color:var(--text-muted);margin-top:14px;max-width:480px;line-height:1.85;">A glimpse into our team, our events, and the moments that define who we are.</p>
+    </div>
+  </div>
+  <div style="max-width:1340px;margin:40px auto 0;padding:0 40px;">
+    <div class="tg-grid reveal">
+
+      <div class="tg-item">
+        <img src="ceo.jpeg" alt="Oyepeju Ojikutu — CEO" loading="lazy">
+        <div class="tg-overlay">
+          <div class="tg-overlay-label">Oyepeju Ojikutu</div>
+          <div class="tg-overlay-sub">Founder &amp; CEO</div>
+        </div>
+      </div>
+
+      <div class="tg-item">
+        <img src="white-wedding_04.jpeg" alt="Wedding planning in action" loading="lazy">
+        <div class="tg-overlay">
+          <div class="tg-overlay-label">Wedding Planning</div>
+          <div class="tg-overlay-sub">White Wedding · Lagos</div>
+        </div>
+      </div>
+
+      <div class="tg-item">
+        <img src="corporate-4.jpeg" alt="Corporate event setup" loading="lazy">
+        <div class="tg-overlay">
+          <div class="tg-overlay-label">Corporate Excellence</div>
+          <div class="tg-overlay-sub">Corporate Gala</div>
+        </div>
+      </div>
+
+      <div class="tg-item">
+        <img src="birthday_10.jpeg" alt="Birthday celebration" loading="lazy">
+        <div class="tg-overlay">
+          <div class="tg-overlay-label">Birthday Celebrations</div>
+          <div class="tg-overlay-sub">Milestone Party</div>
+        </div>
+      </div>
+
+      <div class="tg-item">
+        <img src="traditional_03.jpeg" alt="Traditional wedding" loading="lazy">
+        <div class="tg-overlay">
+          <div class="tg-overlay-label">Traditional Weddings</div>
+          <div class="tg-overlay-sub">Cultural Celebrations</div>
+        </div>
+      </div>
+
+      <div class="tg-item">
+        <img src="white-wedding_03.jpeg" alt="Team at work" loading="lazy">
+        <div class="tg-overlay">
+          <div class="tg-overlay-label">Team in Action</div>
+          <div class="tg-overlay-sub">Day-of Coordination</div>
+        </div>
+      </div>
+
+      <div class="tg-item">
+        <img src="white-wedding_09.JPEG" alt="Elegant décor setup" loading="lazy">
+        <div class="tg-overlay">
+          <div class="tg-overlay-label">Event Design</div>
+          <div class="tg-overlay-sub">Venue Styling</div>
+        </div>
+      </div>
+
+      <div class="tg-item">
+        <img src="hero-1.JPEG" alt="Grand event moment" loading="lazy">
+        <div class="tg-overlay">
+          <div class="tg-overlay-label">Grand Moments</div>
+          <div class="tg-overlay-sub">Full Event Production</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CORE VALUES -->
+<section id="values">
+  <div class="section-inner values-inner">
+    <div class="values-header reveal">
+      <span class="section-label">What We Stand For</span>
+      <h2 class="section-title" style="color:var(--white);">Our Core <span style="color:var(--gold);">Values</span></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal" style="transition-delay:.05s">
+        <i class="fas fa-gem"></i>
+        <h4>Excellence</h4>
+        <p>Good enough is never enough. We hold every detail — from venue layout to table card fonts — to the highest possible standard.</p>
+      </div>
+      <div class="value-card reveal" style="transition-delay:.1s">
+        <i class="fas fa-heart"></i>
+        <h4>Passion</h4>
+        <p>We genuinely love what we do. That love shows in every decision, every vendor call, and every moment we stand beside our clients.</p>
+      </div>
+      <div class="value-card reveal" style="transition-delay:.15s">
+        <i class="fas fa-shield-alt"></i>
+        <h4>Integrity</h4>
+        <p>We are honest with our clients about budgets, timelines, and possibilities. Trust is the foundation of every relationship we build.</p>
+      </div>
+      <div class="value-card reveal" style="transition-delay:.2s">
+        <i class="fas fa-users"></i>
+        <h4>Teamwork</h4>
+        <p>Behind every flawless event is a coordinated team operating as one unit — communicating, supporting, and delivering together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="about-cta-banner">
+  <div class="about-cta-inner reveal">
+    <span class="section-label" style="justify-content:center;">Ready to Begin?</span>
+    <h2>Let's Create Something <em style="color:var(--pink);font-style:italic;">Unforgettable</em></h2>
+    <p>Tell us about your vision — we're ready to make it a reality.</p>
+    <div class="about-cta-btns">
+      <a href="form.html" class="btn-primary"><span><i class="fas fa-paper-plane" style="margin-right:10px;"></i>Make an Enquiry</span></a>
+      <a href="https://wa.me/2348134125119" class="btn-outline-dark" target="_blank" rel="noopener"><i class="fab fa-whatsapp" style="margin-right:10px;"></i>Chat on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px;">
+          <svg width="44" height="50" viewBox="0 0 44 50" fill="none">
+            <ellipse cx="14" cy="28" rx="13" ry="19" fill="#D4237A" opacity=".85" transform="rotate(-20 14 28)"/>
+            <ellipse cx="24" cy="22" rx="12" ry="17" fill="#F5A623" opacity=".8" transform="rotate(10 24 22)"/>
+            <ellipse cx="33" cy="30" rx="10" ry="14" fill="#7BC8A4" opacity=".75" transform="rotate(30 33 30)"/>
+          </svg>
+          <div>
+            <div class="footer-brand-name">Events by Pejublack</div>
+            <div class="footer-brand-sub">Creating Exciting Memories</div>
+          </div>
+        </div>
+        <p>Lagos' premier full-service event planning, design, and management company. Transforming occasions into timeless experiences.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i>Home</a></li>
+          <li><a href="index.html#services"><i class="fas fa-chevron-right"></i>Services</a></li>
+          <li><a href="index.html#packages"><i class="fas fa-chevron-right"></i>Packages</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i>Gallery</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i>About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Events</h4>
+        <ul>
+          <li><a href="index.html#packages"><i class="fas fa-chevron-right"></i>Weddings</a></li>
+          <li><a href="index.html#packages"><i class="fas fa-chevron-right"></i>Corporate Events</a></li>
+          <li><a href="index.html#packages"><i class="fas fa-chevron-right"></i>Birthday Parties</a></li>
+          <li><a href="index.html#packages"><i class="fas fa-chevron-right"></i>Social Gatherings</a></li>
+          <li><a href="index.html#packages"><i class="fas fa-chevron-right"></i>Traditional Occasions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram"></i>@eventsbypejublack</a></li>
+          <li><a href="#"><i class="fab fa-tiktok"></i>@eventsbypejublack</a></li>
+          <li><a href="#"><i class="fab fa-facebook-f"></i>Events by Pejublack</a></li>
+          <li><a href="#"><i class="fab fa-youtube"></i>@pjbeventsbackup</a></li>
+        </ul>
+        <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);">
+          <h4>Contact</h4>
+          <p style="font-family:var(--font-body);font-size:.78rem;font-weight:300;color:rgba(255,255,255,.35);line-height:1.8;margin-top:10px;">
+            <a href="tel:+2348134125119" style="color:rgba(255,255,255,.35);text-decoration:none;">+234 813 412 5119</a><br>
+            <a href="mailto:eventsbypejublack@gmail.com" style="color:rgba(255,255,255,.35);text-decoration:none;">eventsbypejublack@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Events by Pejublack. All rights reserved. Made with <span>♥</span> in Lagos.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp-float">
+  <a href="https://wa.me/2348134125119" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<script>
+// ── LOADER ──
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2000);
+});
+
+// ── CURSOR ──
+if (window.matchMedia('(pointer:fine)').matches) {
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  let mX=0,mY=0,rX=0,rY=0;
+  document.addEventListener('mousemove', e => {
+    mX=e.clientX; mY=e.clientY;
+    cursor.style.left=mX+'px'; cursor.style.top=mY+'px';
+  });
+  (function animateRing(){
+    rX+=(mX-rX)*.12; rY+=(mY-rY)*.12;
+    cursorRing.style.left=rX+'px'; cursorRing.style.top=rY+'px';
+    requestAnimationFrame(animateRing);
+  })();
+  document.querySelectorAll('a,button,.tg-item,.goal-block,.value-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';cursor.style.background='var(--gold)';cursorRing.style.width='56px';cursorRing.style.height='56px';});
+    el.addEventListener('mouseleave',()=>{cursor.style.width='10px';cursor.style.height='10px';cursor.style.background='var(--pink)';cursorRing.style.width='36px';cursorRing.style.height='36px';});
+  });
+}
+
+// ── NAVBAR ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), {passive:true});
+
+// ── MOBILE NAV ──
+let navOpen = false;
+function toggleMobileNav() {
+  navOpen = !navOpen;
+  const nav = document.getElementById('mobileNav');
+  const btn = document.getElementById('menuBtn');
+  nav.classList.toggle('open', navOpen);
+  btn.classList.toggle('open', navOpen);
+  btn.setAttribute('aria-expanded', navOpen);
+  nav.setAttribute('aria-hidden', !navOpen);
+  document.body.style.overflow = navOpen ? 'hidden' : '';
+}
+function closeMobileNav() {
+  navOpen = false;
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('menuBtn').classList.remove('open');
+  document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
+  document.getElementById('mobileNav').setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+document.getElementById('mobileNav').addEventListener('click', e => {
+  if (e.target === document.getElementById('mobileNav')) closeMobileNav();
+});
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      requestAnimationFrame(() => entry.target.classList.add('visible'));
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.1, rootMargin: '0px 0px -30px 0px'});
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ── COUNTER ANIMATION ──
+const counters = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, 16);
+      counterObserver.unobserve(el);
+    }
+  });
+}, {threshold: 0.5});
+counters.forEach(c => counterObserver.observe(c));
+
+// ── REDUCED MOTION ──
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.marquee-track').forEach(el => el.style.animation = 'none');
+}
+</script>
+</body>
+</html>

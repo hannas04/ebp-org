@@ -280,43 +280,20 @@ section{position:relative;overflow:hidden}
 .t-event{font-family:var(--font-body);font-size:.7rem;font-weight:300;color:rgba(255,255,255,.35);letter-spacing:.1em;margin-top:2px}
 .t-stars{margin-bottom:18px;color:var(--gold);font-size:.75rem;letter-spacing:.1em}
 
-/* CEO SECTION */
-#ceo{padding:120px 0;background:var(--white)}
-.ceo-header{text-align:center;margin-bottom:70px}
-.ceo-header .section-label{justify-content:center}
-.ceo-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.ceo-img-frame{position:relative;overflow:hidden;border-radius:24px;min-height:520px;background:linear-gradient(135deg,#2d1520 0%,#5c2a40 50%,#8b4060 100%)}
-.ceo-img-frame img{width:100%;height:100%;object-fit:cover;display:block}
-.ceo-quote{margin-top:30px;padding:28px 30px;background:var(--light-gray);border-left:4px solid var(--sage)}
-.ceo-quote p{font-family:var(--font-sub);font-style:italic;font-size:1rem;color:var(--charcoal);line-height:1.8}
-.ceo-quote span{display:block;margin-top:18px;font-family:var(--font-body);font-size:.82rem;font-weight:500;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase}
-.ceo-content .section-title{margin-bottom:24px}
-.ceo-bio{font-family:var(--font-body);font-size:.95rem;line-height:1.9;color:var(--text-muted);font-weight:300;margin-bottom:36px}
-.ceo-highlights{display:grid;gap:20px}
-.highlight-card{background:var(--light-gray);padding:28px 30px;border-radius:20px;border:1px solid var(--border)}
-.highlight-card h3{font-family:var(--font-display);font-style:italic;font-size:1.2rem;color:var(--charcoal);margin-bottom:16px;font-weight:500}
-.highlight-card p,.highlight-card ul{font-family:var(--font-body);font-size:.88rem;font-weight:300;color:var(--text-muted);line-height:1.8}
-.highlight-card ul{list-style:disc;padding-left:18px}
-.highlight-card ul li{margin-bottom:10px}
-
-/* LEAD / TEAM */
-#lead{padding:120px 0;background:var(--light-gray)}
-.lead-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:center}
-.lead-img{aspect-ratio:3/4;background:linear-gradient(135deg,#1a1018 0%,#3d2a38 50%,#5c4258 100%);position:relative;overflow:hidden}
-.lead-img::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,35,122,.15),transparent 70%)}
-.lead-visual{position:relative}
-.lead-badge{position:absolute;top:40px;left:-24px;background:var(--pink);color:var(--white);padding:18px 28px;z-index:2;display:flex;flex-direction:column;gap:4px}
-.lead-badge i{font-size:1.4rem;margin-bottom:6px}
-.lead-badge span{font-family:var(--font-body);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase}
-.lead-corner{position:absolute;bottom:-20px;right:-20px;width:60px;height:60px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
-.lead-name{font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:var(--pink);margin-bottom:4px}
-.lead-role{font-family:var(--font-body);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:30px}
-.lead-bio{font-family:var(--font-body);font-size:.9rem;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:36px}
-.lead-certs{display:flex;flex-direction:column;gap:12px}
-.cert-item{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--white);border-left:3px solid var(--sage)}
-.cert-item i{color:var(--sage);font-size:1rem;flex-shrink:0}
-.cert-text{font-family:var(--font-body);font-size:.82rem;font-weight:300;color:var(--text-muted);line-height:1.5}
-.cert-text strong{font-weight:500;color:var(--charcoal);display:block;font-size:.85rem}
+/* TEAM / ABOUT US SECTION */
+#team{padding:120px 0;background:var(--white);position:relative;overflow:hidden}
+.team-header{text-align:center;margin-bottom:60px}
+.team-duo{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;position:relative;z-index:1}
+.team-member-img-wrap{position:relative;margin-bottom:28px}
+.team-member-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(135deg,#2d1520 0%,#5c2a40 50%,#8b4060 100%)}
+.team-member-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.team-member:hover .team-member-img img{transform:scale(1.04)}
+.team-member-img--alt{background:linear-gradient(135deg,#1a1018 0%,#3d2a38 50%,#5c4258 100%)}
+.team-member-badge{position:absolute;bottom:-16px;right:20px;width:44px;height:44px;background:var(--pink);display:flex;align-items:center;justify-content:center;color:var(--white);font-size:.85rem;box-shadow:0 8px 24px rgba(212,35,122,.3)}
+.team-member-badge--gold{background:var(--gold);box-shadow:0 8px 24px rgba(245,166,35,.3)}
+.team-member-name{font-family:var(--font-display);font-style:italic;font-size:1.5rem;color:var(--charcoal);font-weight:500;margin-bottom:6px}
+.team-member-role{font-family:var(--font-body);font-size:.68rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);display:block;margin-bottom:16px}
+.team-member-bio{font-family:var(--font-body);font-size:.88rem;font-weight:300;line-height:1.9;color:var(--text-muted)}
 
 /* ENQUIRY LINK SECTION */
 .enquiry-banner{padding:100px 0;background:var(--charcoal);text-align:center;position:relative;overflow:hidden}
@@ -366,13 +343,12 @@ footer{background:var(--charcoal);padding:80px 0 40px}
 /* ─── RESPONSIVE ─── */
 @media(max-width:1024px){
   .about-grid{grid-template-columns:1fr;gap:60px}
-  .lead-grid{grid-template-columns:1fr;gap:50px}
+  .team-duo{grid-template-columns:1fr 1fr;gap:36px}
   .services-grid,.packages-grid{grid-template-columns:1fr 1fr}
   .package-card.featured{transform:none}
   .gallery-grid{grid-template-columns:repeat(2,1fr)}
   .gallery-item:nth-child(1),.gallery-item:nth-child(5){grid-column:span 1;grid-row:span 1}
   .footer-top{grid-template-columns:1fr 1fr}
-  .ceo-grid{grid-template-columns:1fr;gap:40px}
   .contact-grid{grid-template-columns:1fr 1fr}
   .videos-grid{grid-template-columns:1fr 1fr}
 }
@@ -390,7 +366,6 @@ footer{background:var(--charcoal);padding:80px 0 40px}
   .footer-bottom{flex-direction:column;gap:20px;text-align:center}
   .footer-inner{padding:0 24px}
   .services-header{flex-direction:column;align-items:flex-start}
-  .ceo-img-frame{min-height:360px}
   .hero-content{padding:0 24px 60px}
   .hero-title{font-size:clamp(2.4rem,9vw,3.6rem)}
   .hero-dots{right:24px;bottom:24px}
@@ -402,7 +377,8 @@ footer{background:var(--charcoal);padding:80px 0 40px}
   .videos-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
   .enquiry-btns{flex-direction:column;align-items:center}
-  .ceo-header{margin-bottom:50px}
+  .team-duo{grid-template-columns:1fr;gap:48px}
+  #team{padding:80px 0}
 }
 </style>
 </head>
@@ -434,8 +410,8 @@ footer{background:var(--charcoal);padding:80px 0 40px}
     <a href="#gallery" onclick="closeMobileNav()"><i class="fas fa-chevron-right"></i>Gallery</a>
     <a href="#videos" onclick="closeMobileNav()"><i class="fas fa-chevron-right"></i>Videos</a>
     <a href="#testimonials" onclick="closeMobileNav()"><i class="fas fa-chevron-right"></i>Stories</a>
-    <a href="#ceo" onclick="closeMobileNav()"><i class="fas fa-chevron-right"></i>Our CEO</a>
-    <a href="form.html" class="mobile-nav-cta-btn">Enquire Now</a>
+    <a href="about.html" onclick="closeMobileNav()"><i class="fas fa-chevron-right"></i>Our Team</a>
+    <!-- <a href="form.html" class="mobile-nav-cta-btn">Enquire Now</a> -->
   </div>
   <div class="mobile-nav-footer">
     <p>Follow us</p>
@@ -680,9 +656,6 @@ footer{background:var(--charcoal);padding:80px 0 40px}
         <a href="form.html" class="package-cta">Learn More</a>
       </div>
     </div>
-    <!-- <div class="reveal" style="margin-top:40px;text-align:center;padding:28px;background:var(--light-gray);border-left:3px solid var(--gold);max-width:600px;margin-left:auto;margin-right:auto;">
-      <p style="font-family:var(--font-sub);font-style:italic;font-size:.95rem;color:var(--text-muted);line-height:1.8;"><i class="fas fa-info-circle" style="color:var(--gold);margin-right:10px;"></i>A 50% non-refundable deposit is required to secure your date. All prices are VAT exclusive. Fees may be reviewed for planning periods beyond 6 months due to inflation.</p>
-    </div> -->
   </div>
 </section>
 
@@ -719,7 +692,7 @@ footer{background:var(--charcoal);padding:80px 0 40px}
         <div class="gallery-overlay"><i class="fas fa-expand"></i><span>White Wedding</span></div>
       </div>
       <div class="gallery-item reveal" data-cat="birthdays" style="transition-delay:.4s">
-        <img src="birthday_10.jpeg" alt="Children's party" loading="lazy">
+        <img src="birthday_01.jpeg" alt="Children's party" loading="lazy">
         <div class="gallery-overlay"><i class="fas fa-expand"></i><span>Children's Fiesta</span></div>
       </div>
       <div class="gallery-item reveal" data-cat="weddings" style="transition-delay:.5s">
@@ -750,7 +723,6 @@ footer{background:var(--charcoal);padding:80px 0 40px}
       <p style="font-family:var(--font-sub);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.45);margin-top:14px;line-height:1.8;">Watch the magic we create, moment by moment.</p>
     </div>
     <div class="videos-grid">
-      <!-- VIDEO 1: Replace src with your video file path or embed URL -->
       <div>
         <div class="video-wrapper">
           <video controls preload="none" poster="">
@@ -759,7 +731,6 @@ footer{background:var(--charcoal);padding:80px 0 40px}
         </div>
         <p class="video-label">Wedding Highlights</p>
       </div>
-      <!-- VIDEO 2: Replace src with your video file path or embed URL -->
       <div>
         <div class="video-wrapper">
           <video controls preload="none" poster="">
@@ -768,7 +739,6 @@ footer{background:var(--charcoal);padding:80px 0 40px}
         </div>
         <p class="video-label">Corporate Gala Moments</p>
       </div>
-      <!-- VIDEO 3: Replace src with your video file path or embed URL -->
       <div>
         <div class="video-wrapper">
           <video controls preload="none" poster="">
@@ -792,7 +762,6 @@ footer{background:var(--charcoal);padding:80px 0 40px}
   <div class="testimonial-track-wrapper">
     <div class="testimonial-track" id="testimTrack">
 
-      <!-- Card 1 -->
       <div class="testimonial-card">
         <div class="t-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         <i class="fas fa-quote-left t-quote-icon"></i>
@@ -807,7 +776,6 @@ footer{background:var(--charcoal);padding:80px 0 40px}
         </div>
       </div>
 
-      <!-- Card 2 -->
       <div class="testimonial-card">
         <div class="t-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         <i class="fas fa-quote-left t-quote-icon"></i>
@@ -822,7 +790,6 @@ footer{background:var(--charcoal);padding:80px 0 40px}
         </div>
       </div>
 
-      <!-- Card 3 -->
       <div class="testimonial-card">
         <div class="t-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         <i class="fas fa-quote-left t-quote-icon"></i>
@@ -837,7 +804,6 @@ footer{background:var(--charcoal);padding:80px 0 40px}
         </div>
       </div>
 
-      <!-- Card 4 -->
       <div class="testimonial-card">
         <div class="t-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         <i class="fas fa-quote-left t-quote-icon"></i>
@@ -910,95 +876,63 @@ footer{background:var(--charcoal);padding:80px 0 40px}
   </div>
 </section>
 
-<!-- CEO -->
-<section id="ceo">
-  <div class="blob blob-sage" style="width:320px;height:320px;top:-40px;right:-40px;opacity:.08;"></div>
+<!-- MEET THE TEAM / ABOUT US -->
+<section id="team">
+  <div class="blob blob-pink" style="width:420px;height:420px;top:-80px;right:-80px;opacity:.04;"></div>
+  <div class="blob blob-sage" style="width:280px;height:280px;bottom:60px;left:-60px;opacity:.05;"></div>
   <div class="section-inner">
-    <!-- Header at top -->
-    <div class="ceo-header reveal">
-      <span class="section-label" style="justify-content:center;">Leadership Story</span>
-      <h2 class="section-title">Meet Our <span>CEO</span></h2>
+
+    <div class="team-header reveal">
+      <span class="section-label" style="justify-content:center;">The People Behind the Magic</span>
+      <h2 class="section-title">Meet Our <span>Team</span></h2>
+      <p style="font-family:var(--font-body);font-size:.9rem;font-weight:300;color:var(--text-muted);margin-top:14px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8;">Every event we create carries the fingerprints of a passionate, detail-driven team who truly love what they do.</p>
     </div>
-    <!-- CEO image + bio below -->
-    <div class="ceo-grid">
-      <div class="ceo-visual reveal-left">
-        <div class="ceo-img-frame">
-          <img src="ceo.jpeg" alt="Peju Black — CEO of Events by Pejublack" loading="lazy">
-        </div>
-        <div class="ceo-quote">
-          <p>"Event Excellence Lead"</p>
-          <span>— Peju Black, Founder &amp; CEO</span>
-        </div>
-      </div>
-      <div class="ceo-content reveal-right">
-        <p class="ceo-bio">Peju Black leads Events by Pejublack with a passion for transformational experiences. With over a decade of event design expertise, she blends creativity, precision and warmth to deliver celebrations that feel personal, elegant and effortlessly beautiful.</p>
-        <div class="ceo-highlights">
-          <div class="highlight-card">
-            <h3>Vision</h3>
-            <p>Creating timeless celebrations that reflect each client's story while raising the standard for luxury event planning.</p>
+
+    <div class="team-duo">
+
+      <!-- Member 1: Peju / CEO
+      <div class="team-member reveal-left">
+        <div class="team-member-img-wrap">
+          <div class="team-member-img">
+            <img src="ceo.jpeg" alt="Oyepeju Ojikutu — Founder & CEO" loading="lazy">
           </div>
-          <div class="highlight-card">
-            <h3>Goals</h3>
-            <ul>
-              <li>Design signature experiences that surprise and delight</li>
-              <li>Build trusted partnerships across the event ecosystem</li>
-              <li>Empower clients with confidence from concept to day-of</li>
-            </ul>
-          </div>
+          <div class="team-member-badge"><i class="fas fa-crown"></i></div>
         </div>
+        <h3 class="team-member-name">Oyepeju Ojikutu</h3>
+        <span class="team-member-role">Founder &amp; CEO</span>
+        <p class="team-member-bio">Peju leads Events by Pejublack with over a decade of event design expertise, blending creativity, precision and warmth to deliver celebrations that feel deeply personal and effortlessly beautiful. A Certified Show Producer and the driving force behind every memorable experience we create.</p>
+      </div> -->
+
+      <!-- Member 2: Design Team -->
+      <div class="team-member reveal-right">
+        <div class="team-member-img-wrap">
+          <div class="team-member-img team-member-img--alt">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;">
+              <svg width="64" height="72" viewBox="0 0 64 72" fill="none">
+                <ellipse cx="20" cy="40" rx="18" ry="26" fill="#D4237A" opacity=".55" transform="rotate(-20 20 40)"/>
+                <ellipse cx="34" cy="32" rx="16" ry="22" fill="#F5A623" opacity=".5" transform="rotate(10 34 32)"/>
+                <ellipse cx="48" cy="44" rx="13" ry="18" fill="#7BC8A4" opacity=".45" transform="rotate(30 48 44)"/>
+              </svg>
+              <span style="font-family:var(--font-sub);font-style:italic;font-size:.8rem;color:rgba(255,255,255,.35);letter-spacing:.08em;">Events by Pejublack</span>
+            </div>
+          </div>
+          <div class="team-member-badge team-member-badge--gold"><i class="fas fa-certificate"></i></div>
+        </div>
+        <h3 class="team-member-name">The Design Team</h3>
+        <span class="team-member-role">Event Designers &amp; Coordinators</span>
+        <p class="team-member-bio">Our on-ground team of certified coordinators and event designers bring every concept to life — managing vendors, styling venues, and ensuring your day unfolds without a single missed detail. Wherever your celebration takes us, we show up ready.</p>
       </div>
+
     </div>
+
+    <div class="reveal" style="text-align:center;margin-top:60px;">
+      <a href="about.html" class="btn-primary"><span><i class="fas fa-arrow-right" style="margin-right:10px;"></i>Meet the Full Team</span></a>
+    </div>
+
   </div>
 </section>
 
-<!-- TEAM LEAD -->
-<section id="lead">
-  <div class="section-inner">
-    <div class="lead-grid">
-      <div class="lead-visual reveal-left">
-        <div class="lead-badge">
-          <i class="fas fa-certificate"></i>
-          <span>ACIPM Certified</span>
-          <span>PHRi Certified</span>
-        </div>
-        <div class="lead-img">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
-            <svg width="70" height="80" viewBox="0 0 70 80" fill="none">
-              <ellipse cx="22" cy="44" rx="20" ry="28" fill="#D4237A" opacity=".5" transform="rotate(-20 22 44)"/>
-              <ellipse cx="38" cy="36" rx="18" ry="25" fill="#F5A623" opacity=".45" transform="rotate(10 38 36)"/>
-              <ellipse cx="52" cy="48" rx="14" ry="20" fill="#7BC8A4" opacity=".4" transform="rotate(30 52 48)"/>
-            </svg>
-            <span style="font-family:var(--font-sub);font-style:italic;font-size:.8rem;color:rgba(255,255,255,.35);letter-spacing:.1em;">Oyepeju Ojikutu</span>
-          </div>
-        </div>
-        <div class="lead-corner"></div>
-      </div>
-      <div class="lead-content reveal-right">
-        <span class="section-label">Meet the Team</span>
-        <h2 class="section-title">Event <span>Excellence</span><br>Lead</h2>
-        <div class="lead-name">Oyepeju Ojikutu</div>
-        <div class="lead-role">Founder &amp; Lead Event Designer</div>
-        <p class="lead-bio">Our Event Excellence team is led by Oyepeju Ojikutu, who brings a unique blend of structure, creativity, and excellence to Event Designs and Management. Her passion for transforming ideas into immersive experiences has positioned EventsByPejublack as a trusted name for stylish, detail-driven, and memorable events across Lagos and beyond.</p>
-        <div class="lead-certs">
-          <!-- <div class="cert-item">
-            <i class="fas fa-award"></i>
-            <div class="cert-text"><strong>ACIPM Certified</strong>Chartered Institute of Personnel Management</div>
-          </div>
-          <div class="cert-item">
-            <i class="fas fa-star"></i>
-            <div class="cert-text"><strong>PHRi Certified</strong>Professional in Human Resources – International</div>
-          </div> -->
-          <div class="cert-item">
-            <i class="fas fa-video"></i>
-            <div class="cert-text"><strong>Certified Show Producer</strong>Mahogany Training Academy, Lagos</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ENQUIRY BANNER (replaces inline form) -->
+<!-- ENQUIRY BANNER -->
 <div class="enquiry-banner">
   <div class="enquiry-banner-inner reveal">
     <span class="section-label" style="justify-content:center;color:var(--gold);margin-bottom:20px;">
@@ -1167,7 +1101,6 @@ function closeMobileNav() {
   document.getElementById('mobileNav').setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
-// Close on overlay click
 document.getElementById('mobileNav').addEventListener('click', e => {
   if (e.target === document.getElementById('mobileNav')) closeMobileNav();
 });
@@ -1192,7 +1125,6 @@ function slideChange(dir) {
 }
 slideInterval = setInterval(() => goToSlide(currentSlide + 1), 5000);
 
-// Preload hero images after load
 window.addEventListener('load', () => {
   slides.forEach((s,i) => {
     if (i > 0) {
